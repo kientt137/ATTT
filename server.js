@@ -33,11 +33,19 @@ app.post('/check_prime_number', urlencodedParser, function(req,res){
 app.post('/parser_prime_number', urlencodedParser, function(req,res){
 	var num = req.body.number;
 	var kq = parser_a_number_to_multiple_of_prime(num);
-	res.send(kq + '1');
+	var text = "Ket qua = " + kq[0];
+	for (var i = 1; i < kq.length; i++){
+		text = text + "*" + kq[i];
+	}
+	res.send(text);
 })
 
+app.post('/generator_number', urlencodedParser, function(req,res){
+	var num = req.body.number;
+	var kq = generator_number(num);
+	res.send('Ket qua: ' + kq);
+})
 function check_prime_number(n){
-// Neu n < 2 thi khong phai la SNT
     if (n < 2){
         return false;
     }       
@@ -58,7 +66,7 @@ function check_prime_number(n){
             return false;
         }   
     }     
-    return true;
+    return true;	//kiem tra 1 so co phai snt ko
 }
 
 function find_prime_number_more_than(n){
@@ -69,7 +77,7 @@ function find_prime_number_more_than(n){
 			console.log(m);
 		}
 		else return m;
-	}
+	} //tim so nguyen to lon hon gan nhat
 }
 
 function find_prime_number_less_than(n){
@@ -79,17 +87,23 @@ function find_prime_number_less_than(n){
 			n--;
 		}
 		else return m;
-	}
+	} //tim so nguyen to be hon gan nhat
 }
 
 function parser_a_number_to_multiple_of_prime(n){
-	var text = 'Ket qua bang = ';
+	var kq = [];
+	var k = 0;
 	for(var i = 2; i <= n ; i++){
 		if (n%i == 0){
 			n = n/i;
-			text = text + i + '*';
+			kq[k] = i;
+			k++; 
 			i--;
 		}
 	}
-	return text;
+	return kq; //phan tich 1 so thanh thua so nguyen to tra ve mot mang
+}
+
+function generator_number(n){
+
 }

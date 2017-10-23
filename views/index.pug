@@ -31,6 +31,17 @@ html(lang='en')
                             text    &nbsp;
                             input#sb2(type = 'button' value = 'submit')
                         h4#result2
+            div.jumbotron
+                h2 Tính phần tử nguyên thủy a của Zp*
+                div.panel.panel-default
+                    div.panel-body
+                        form(action='')
+                            text Nhập p:
+                            text    &nbsp;&nbsp;&nbsp;
+                            input#number3( type = 'text')
+                            text    &nbsp;
+                            input#sb3(type = 'button' value = 'submit')
+                        h4#result3
     script.
          $(document).ready(() => {
             $('#sb').click(abc = () => {
@@ -44,6 +55,12 @@ html(lang='en')
                 let number = $('#number2').val();
                 $.post('parser_prime_number', 'number='+number,(data, status) => {
                 	$('#result2').html(data);
+                })
+            })
+            $('#sb3').click(abc = () => {
+                let number = $('#number3').val();
+                $.post('generator_number', 'number='+number,(data, status) => {
+                	$('#result3').html(data);
                 })
             })
          });
