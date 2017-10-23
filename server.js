@@ -7,7 +7,7 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false });
 app.get('/',(req,res) => {
     res.render('index.pug');
 })
-server = app.listen(3000, () => {
+server = app.listen(process.env.PORT || 5000, () => {
             console.log("Server is running");
         });
 app.post('/check_prime_number', urlencodedParser, function(req,res){
