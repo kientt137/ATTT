@@ -1,0 +1,49 @@
+doctype html
+html(lang='en')
+    head
+        title ATTT
+        link(rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css')
+        script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js")
+        style body {padding-top: 50px;}
+    body
+        div.container
+            div.jumbotron
+                h2 Số nguyên tố
+                div.panel.panel-default
+                    div.panel-body
+                        form(action='')
+                            select#sl
+                                option(value= '1') Kiểm tra
+                                option(value= '2') Lớn hơn gần nhất
+                                option(value= '3') Nhỏ hơn gần nhất
+                            text    &nbsp;&nbsp;&nbsp;
+                            input#number( type = 'text')
+                            text    &nbsp;
+                            input#sb(type = 'button' value = 'submit')
+                        h4#result
+            div.jumbotron
+                h2 Phân tích 1 số thành thừa số nguyên tố
+                div.panel.panel-default
+                    div.panel-body
+                        form(action='')
+                            text    &nbsp;&nbsp;&nbsp;
+                            input#number2( type = 'text')
+                            text    &nbsp;
+                            input#sb2(type = 'button' value = 'submit')
+                        h4#result2
+    script.
+         $(document).ready(() => {
+            $('#sb').click(abc = () => {
+                let number = $('#number').val();
+                let option = $('#sl').val();
+                $.post('check_prime_number', 'number='+number +'&option='+option ,(data, status) => {
+                	$('#result').html(data);
+                })
+            })
+            $('#sb2').click(abc = () => {
+                let number = $('#number2').val();
+                $.post('parser_prime_number', 'number='+number,(data, status) => {
+                	$('#result2').html(data);
+                })
+            })
+         });
