@@ -4,6 +4,7 @@ html(lang='en')
 		title ATTT
 		link(rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css')
 		script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js")
+		meta(name='viewport', content='width=device-width, initial-scale=1')
 		style body {padding-top: 50px;}
 	body
 		div.container
@@ -57,29 +58,36 @@ html(lang='en')
 									text    &nbsp;
 									input#sb3(type = 'button' value = 'submit')
 								h4#result3
-				li
-					a(href='#') Max hoas			
+
+					form(action='')
+						input#sb4(type = 'button' value = 'submit')
+					h4#result4 abc
 	script.
 		$(document).ready(() => {
-		$('#sb').click(abc = () => {
-			let number = $('#number').val();
-			let option = $('#sl').val();
-			$.post('check_prime_number', 'number='+number +'&option='+option ,(data, status) => {
-			$('#result').html(data);
+			$('#sb').click(abc = () => {
+				let number = $('#number').val();
+				let option = $('#sl').val();
+				$.post('check_prime_number', 'number='+number +'&option='+option ,(data, status) => {
+				$('#result').html(data);
+				})
 			})
-		})
-		$('#sb2').click(abc = () => {
-			let number = $('#number2').val();
-			$.post('parser_prime_number', 'number='+number,(data, status) => {
-				$('#result2').html(data);
+			$('#sb2').click(abc = () => {
+				let number = $('#number2').val();
+				$.post('parser_prime_number', 'number='+number,(data, status) => {
+					$('#result2').html(data);
+				})
 			})
-		})
-		$('#sb3').click(abc = () => {
-			let number = $('#number3').val();
-			let pow = $('#pow').val();
-			let modulo =$('#modulo').val();
-			$.post('modulo_calculate', 'number='+number + '&pow=' + pow + '&modulo=' + modulo,(data, status) => {
-				$('#result3').html(data);
+			$('#sb3').click(abc = () => {
+				let number = $('#number3').val();
+				let pow = $('#pow').val();
+				let modulo =$('#modulo').val();
+				$.post('modulo_calculate', 'number='+number + '&pow=' + pow + '&modulo=' + modulo,(data, status) => {
+					$('#result3').html(data);
+				})
 			})
-		})
+			$('#sb4').click(abc = () => {
+				$.post('tim_nghich_dao_modulo', 'n=3120&a=71',(data, status) => {
+					$('#result4').html(data);
+				})
+			})
 		});

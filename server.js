@@ -7,6 +7,9 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false });
 app.get('/',(req,res) => {
     res.render('index.pug');
 })
+app.get('/rsa',(req,res) => {
+    res.render('rsa.pug');
+})
 app.get('/content',(req,res) => {
     res.render('content.pug');
 })
@@ -42,6 +45,13 @@ app.post('/parser_prime_number', urlencodedParser, function(req,res){
 	}
 	res.send(text);
 })
+
+app.post('/tim_nghich_dao_modulo', urlencodedParser, function(req,res){
+	var n = req.body.n;
+	var a = req.body.a;
+	console.log(req.body);
+	res.send(tim_nghich_dao_modulo(n,a));
+});
 
 app.post('/modulo_calculate', urlencodedParser, function(req,res){
 	var num = req.body.number;
@@ -136,4 +146,32 @@ function modfun(num, pow, mod){
 		num = num%mod;
 	}
 	return result;
+}
+
+function tim_nghich_dao_modulo(n,a){
+	var A1 = 1, A2 = 0, A3 = n;
+	var B1 = 0, B2 = 1, B3 = a;
+	var T1 = 0, T2 = 0, T3 = 0;
+	var Q = 0;
+	var html = "<table class='table table-bordered'><tr><td>Q</td><td>A1</td><td>A2</td><td>A3</td><td>B1</td><td>B2</td><td>B3</td><td>T1</td><td>T2</td><td>T3</td></tr>";
+	html = html + "<tr><td>" + Q + "</td><td>" + A1 + "</td><td>" + A2 + "</td><td>" + A3+ "</td><td>" + B1 + "</td><td>" + B2 + "</td><td>" + B3 + "</td><td>" + T1 + "</td><td>" + T2 + "</td><td>" + T3 + "</td></tr>";
+	while (B3 != 10){
+		if (B3 == 0) return A3 + ", khong ton tai.";
+		else if (B3 == 1) break;
+		else {
+			Q = Math.floor(A3/B3);
+			T1 = A1 - Q*B1;
+			T2 = A2 - Q*B2;
+			T3 = A3 - Q*B3;
+			A1 = B1;
+			A2 = B2;
+			A3 = B3;
+			B1 = T1;
+			B2 = T2;
+			B3 = T3;
+			html = html + "<tr><td>" + Q + "</td><td>" + A1 + "</td><td>" + A2 + "</td><td>" + A3+ "</td><td>" + B1 + "</td><td>" + B2 + "</td><td>" + B3 + "</td><td>" + T1 + "</td><td>" + T2 + "</td><td>" + T3 + "</td></tr>";
+		}
+	}
+	html = html + "</table>";
+	return html;
 }

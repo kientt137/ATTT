@@ -13,8 +13,8 @@ html
                     span#faculty Khoa Công nghệ Thông tin
 
                 | ,
-                a(href='http://uet.vnu.edu.vn')
-                    span#school  Trường Đại học Công nghệ
+                a(href='/rsa')
+                    span#school  Mã hóa RSA
                 | ,
                 a(href='http://vnu.edu.vn')
                     span#university  ĐHQGHN
@@ -64,11 +64,11 @@ html
                             div.panel-body
                                 form(action='')
                                     text    &nbsp;&nbsp;&nbsp;
-                                    input#number3( type = 'text')
+                                    input#number3( type = 'text' size = '6')
                                     text  ^ 
-                                    input#pow( type = 'text')
+                                    input#pow( type = 'text' size = '5')
                                     text  mod 
-                                    input#modulo( type = 'text')
+                                    input#modulo( type = 'text' size = '5')
                                     text    &nbsp;
                                     input#sb3(type = 'button' value = 'submit')
                                 h4#result3
@@ -88,7 +88,7 @@ html
                     li
                         span#playguitar
                     br
-                    
+
         script(type='text/javascript').
             
             function hideAllContentPanes() {
