@@ -7,6 +7,9 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false });
 app.get('/',(req,res) => {
     res.render('index.pug');
 })
+app.get('/content',(req,res) => {
+    res.render('content.pug');
+})
 server = app.listen(process.env.PORT || 5000, () => {
             console.log("Server is running");
         });
@@ -40,9 +43,12 @@ app.post('/parser_prime_number', urlencodedParser, function(req,res){
 	res.send(text);
 })
 
-app.post('/generator_number', urlencodedParser, function(req,res){
+app.post('/modulo_calculate', urlencodedParser, function(req,res){
 	var num = req.body.number;
-	var kq = generator_number(num);
+	var pow = req.body.pow;
+	var mod = req.body.modulo;
+	console.log(req.body);
+	var kq = modulo_calculate(num, pow, mod);
 	res.send('Ket qua: ' + kq);
 })
 function check_prime_number(n){
@@ -104,6 +110,30 @@ function parser_a_number_to_multiple_of_prime(n){
 	return kq; //phan tich 1 so thanh thua so nguyen to tra ve mot mang
 }
 
-function generator_number(n){
+function modulo_calculate(num, pow, mod){
+	if(num == 0) return 0;
+	else if (pow == 0) return 1;
+	else if (pow == 1) return num%mod;
+	else {
+		var kq = modfun(num, pow, mod);
+		console.log(kq);
+		return kq%mod;
+	}
+}
 
+function modfun(num, pow, mod){
+	var result = 1;
+	while (pow > 0){
+		if (pow & 1)
+		{
+			num = num%mod;
+			result = (result * num)%mod;
+			result = result%mod;
+		}
+		pow = pow >> 1;
+		num = num % mod;
+		num = (num*num)%mod;
+		num = num%mod;
+	}
+	return result;
 }
