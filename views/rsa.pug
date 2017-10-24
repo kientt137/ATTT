@@ -1,2 +1,60 @@
-h1
-	text xin chào
+doctype html
+html(lang='en')
+	head
+		title ATTT
+		link(rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css')
+		script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js")
+		meta(name='viewport', content='width=device-width, initial-scale=1')
+		style body {padding-top: 50px;}
+	body
+		div.container
+			h1
+				text Giải toán chấm gà
+				br
+				hr
+			h3
+				a(href='/')
+					span#faculty Số nguyên tố
+
+				|  | 
+				a(href='/rsa')
+					span#school  RSA
+				|  | 
+				a(href='http://vnu.edu.vn')
+					span#university  Chữ ký
+				br
+				br
+			div.jumbotron
+				h4 Tính modulo của phép lũy thừa
+				div.panel.panel-default
+					div.panel-body
+						form(action='')
+							text    &nbsp;&nbsp;&nbsp;
+							input#number3( type = 'text' size = '6')
+							text  ^ 
+							input#pow( type = 'text' size = '6')
+							text  mod 
+							input#modulo( type = 'text' size = '6')
+							text    &nbsp;
+							input#sb3(type = 'button' value = 'submit')
+						h4#result3
+
+			form(action='')
+				input#sb4(type = 'button' value = 'submit')
+			h4#result4 abc
+	script.
+		$(document).ready(() => {
+			$('#sb3').click(abc = () => {
+				let number = $('#number3').val();
+				let pow = $('#pow').val();
+				let modulo =$('#modulo').val();
+				$.post('modulo_power_calculate', 'number='+number + '&pow=' + pow + '&modulo=' + modulo,(data, status) => {
+					$('#result3').html(data);
+				})
+			})
+			$('#sb4').click(abc = () => {
+				$.post('tim_nghich_dao_modulo', 'n=3120&a=71',(data, status) => {
+					$('#result4').html(data);
+				})
+			})
+		});
