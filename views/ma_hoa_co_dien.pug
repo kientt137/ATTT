@@ -1,0 +1,58 @@
+doctype html
+html(lang='en')
+	head
+		title ATTT
+		link(rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css')
+		script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js")
+		meta(name='viewport', content='width=device-width, initial-scale=1')
+		style body {padding-top: 50px;}
+	body
+		div.container
+			h1
+				text Giải toán chấm gà
+				br
+				hr
+			h3
+				a(href='/')
+					span#faculty Số nguyên tố
+
+				|  | 
+				a(href='/rsa')
+					span#school  RSA
+				|  | 
+				a(href='http://vnu.edu.vn')
+					span#university  Chữ ký
+				br
+				br
+			div.jumbotron
+				h4 Bang chuyen chu thanh so
+				div.panel.panel-default
+					div.panel-body
+						form(action='')
+							input#show_table(type = 'button' value = 'submit')
+						h4#result
+			div.jumbotron
+				h4 Chuyển văn bản sang só
+				div.panel.panel-default
+					div.panel-body
+						form(action='')
+							text    &nbsp;&nbsp;&nbsp;
+							input#vanban( type = 'textarea')
+							text    &nbsp;
+							input#convert(type = 'button' value = 'submit')
+						h4#result2
+
+	script.
+		$(document).ready(() => {
+			$('#show_table').click(abc = () => {
+				$.get('show_table_number_text',(data, status) => {
+					$('#result').html(data);
+				})
+			})
+			$('#convert').click(abc = () => {
+				let vanban = $('#vanban').val();
+				$.post('convert_text_to_number','vanban=' + vanban, (data, status) => {
+					$('#result2').html(data);
+				})
+			})
+		});

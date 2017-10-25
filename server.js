@@ -6,7 +6,8 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 var prime_number = require('./functions/prime_number');
 var modulo = require('./functions/modulo');
-
+var text_number = require('./functions/text_number');
+app.use(express.static('public'));
 app.get('/',(req,res) => {
     res.render('index.pug');
 })
@@ -15,6 +16,21 @@ app.get('/rsa',(req,res) => {
 })
 app.get('/content',(req,res) => {
     res.render('content.pug');
+})
+app.get('/ma_hoa_co_dien',(req,res) => {
+    res.render('ma_hoa_co_dien.pug');
+})
+
+app.get('/show_table_number_text', (req,res) => {
+	res.send(text_number.tao_bang());
+})
+app.get('/love', (req,res) => {
+	res.render('index3.pug');
+})
+app.post('/convert_text_to_number', urlencodedParser, (req,res) => {
+	var vanban = req.body.vanban;
+	console.log(vanban);
+	res.send(text_number.text_to_number(vanban));
 })
 server = app.listen(process.env.PORT || 5000, () => {
             console.log("Server is running");
