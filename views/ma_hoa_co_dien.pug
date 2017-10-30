@@ -2,9 +2,10 @@ doctype html
 html(lang='en')
 	head
 		title ATTT
-		link(rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css')
-		script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js")
+		link(rel='stylesheet' href='./css/bootstrap.min.css')
+		script(src="jquery-3.2.1.min.js")
 		meta(name='viewport', content='width=device-width, initial-scale=1')
+		meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
 		style body {padding-top: 50px;}
 	body
 		div.container
@@ -20,19 +21,19 @@ html(lang='en')
 				a(href='/rsa')
 					span#school  RSA
 				|  | 
-				a(href='http://vnu.edu.vn')
-					span#university  Chữ ký
+				a(href='/ma_hoa_co_dien')
+					span#university  Mã hóa cổ điển
 				br
 				br
 			div.jumbotron
-				h4 Bang chuyen chu thanh so
+				h4 Bảng chuyển chữ thành số
 				div.panel.panel-default
 					div.panel-body
 						form(action='')
 							input#show_table(type = 'button' value = 'submit')
 						h4#result
 			div.jumbotron
-				h4 Chuyển văn bản sang só
+				h4 Chuyển văn bản sang số
 				div.panel.panel-default
 					div.panel-body
 						form(action='')

@@ -2,14 +2,11 @@ doctype html
 html(lang='en')
 	head
 		title ATTT
-		link(rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css')
-		script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js")
+		link(rel='stylesheet' href='./css/bootstrap.min.css')
+		script(src="jquery-3.2.1.min.js")
 		meta(name='viewport', content='width=device-width, initial-scale=1')
 		meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
-		link(rel='stylesheet', type='text/css', href='style.css')
 		style body {padding-top: 50px;}
-		script(src='jquery.bubble.text.js')
-		script(src='script.js')
 
 	body
 		div.container
@@ -26,16 +23,9 @@ html(lang='en')
 					span#school  RSA
 				|  | 
 				a(href='/ma_hoa_co_dien')
-					span#university  Chữ ký
+					span#university  Mã hóa cổ điển
 				br
 				br
-			div.jumbotron
-				h1 Bấm vào cái nút dưới này này
-				div.panel.panel-default
-					div.panel-body
-						form(action='')
-							input#love(type = 'button' value = 'submit')
-						h4#result
 			div.jumbotron
 				h4 Số nguyên tố
 				div.panel.panel-default
@@ -49,7 +39,7 @@ html(lang='en')
 							input#number( type = 'text' size = '6')
 							text    &nbsp;
 							input#sb(type = 'button' value = 'submit')
-						h4#result9
+						h4#result
 			div.jumbotron
 				h4 Phân tích 1 số thành thừa số nguyên tố
 				div.panel.panel-default
@@ -62,12 +52,6 @@ html(lang='en')
 						h4#result2
 	script.
 		$(document).ready(() => {
-			$('#love').click(abc = () => {
-				$.get('love', (data, status) => {
-					$('#result').html(data);
-				})
-			})
-
 			$('#sb').click(abc = () => {
 				let number = $('#number').val();
 				let option = $('#sl').val();
